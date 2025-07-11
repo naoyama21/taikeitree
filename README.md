@@ -53,28 +53,3 @@ PDFパスの確認: スクリプト内のpdf_path変数が、抽出したいPDF�
 列の座標 (column_coords_list): このスクリプトは、pdfminer.sixで事前に特定された列のX座標に強く依存しています。異なるレイアウトのPDFを処理する場合、これらの座標を再調整する必要があります。pdfminer.sixを使用して、新しいPDFの各列の右端のX座標を特定してください。
 
 表の領域 (table_areas_str): 表がページ内の特定の領域に限定されている場合、table_areas_strを調整することで抽出精度が向上します。PDFビューアで座標を確認し、必要に応じて調整してください。
-
-エラー処理: PermissionErrorなどのファイル書き込みエラーが発生した場合は、出力ファイルが他のプログラムで開かれていないか確認してください。
-
-トラブルシューティング
-ModuleNotFoundError: No module named 'pdfminer.high_level':
-
-スクリプトファイルの名前がpdfminer.pyになっていないか確認してください。もしそうであれば、my_pdf_extractor.pyのように別の名前に変更してください。
-
-pip install pdfminer.sixが正しく実行されたか確認してください。
-
-AttributeError: 'Table' object has no attribute 'to_pdf':
-
-これはCamelotのバージョンによるもので、データ抽出自体には影響しません。スクリプト内のtables[0].to_pdf(...)の行をコメントアウトしてください。
-
-[Errno 13] Permission denied:
-
-出力先のCSVファイルがExcelなどの他のアプリケーションで開かれていないか確認し、閉じてから再度実行してください。
-
-出力ディレクトリへの書き込み権限があることを確認してください。
-
-抽出結果が期待通りでない:
-
-column_coords_listとtable_areas_strの値をPDFのレイアウトに合わせて微調整してください。pdfminer.sixで正確な座標を再確認することが重要です。
-
-flavor='stream'が適切でない場合（PDFに明確な罫線がある場合）、flavor='lattice'を試すことも検討してください。
